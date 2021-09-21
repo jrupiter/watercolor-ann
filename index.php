@@ -3,9 +3,10 @@
 <body class="landing">
 <h1>jrupiter</h1>
 
-
-<input type="text" placeholder="firstname"/> 
-<input type ="text" placeholder="lastname"/>
-<a href="intro1.php"><button>submit</button></a>
+<form method="post" action="includes/intro1.php">
+<input type="text" placeholder="firstname" value="" name="fname"/> 
+<input type="text" placeholder="lastname" value="" name="lname"/> <br>
+<input type="submit" value="submit" name="submit" /> 
+<form>
 </body>
 </html>
