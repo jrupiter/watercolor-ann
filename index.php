@@ -1,4 +1,4 @@
-<?php include("headr.php"); ?>
+<?php include("includes/headr.php"); ?>
 
 <body class="landing">
 <h1>jrupiter</h1>
