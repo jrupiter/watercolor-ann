@@ -2,12 +2,12 @@
 
 include('headr.php');
 
-if(issett ($_POST['submit']){
+if(issett ($_POST['submit'])){
 $firstname = $_POST['fname'];
 $lastname = $_POST['lname'];
 $email = $_POST['emailaddr'];
 require('connect.php');
-echo 'true step1)';
+echo 'true step1';
 
 if(empty($firstname)){
     $error = "fname";
