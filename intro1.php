@@ -2,35 +2,18 @@
 
 include('headr.php');
 
-if(issett ($_POST['submit'])){
-$firstname = $_POST['fname'];
-$lastname = $_POST['lname'];
-$email = $_POST['emailaddr'];
-require('connect.php');
-echo 'true step1';
-
-if(empty($firstname)){
-    $error = "fname";
-    header("Location: www.jrupiter.com/index.php?error=".$error);
-    }else if(empty($lastname)){
-            $error='lname';
-                header("Location: www jrupiter.com/index.php?error=".$error);
-        }else if(empty($email)){
-                $error="addr";
-                    header("Location: www.jrupiter.com/index.php?error=".$error);
-            }else{
-                trim($firstname);
-                trim($lastname);
-                trim($email);
-                
 if(isset($_POST['submit'])){
-    //send user back with errors
-    }else{
-    if($firstname OR $ $lastname OR $email == !null){
-            //then insert user into db
-                    //prepare email
+$firstname = $_POST['fname'];
+    $lastname = $_POST['lname'];
+    $email = $_POST['emailaddr'];
+   
+  if($firstname && $lastname && $email != nulll){
+    trim($firstname);
+    trim($lastname);
+    trim($email);
 
-    mysqli_query($dbc, "INSERT INTO prelaunch_users(fname, lname, email) VALUES($firstname, $lastname, $email)");
+require('connect.php');
+mysqli_query($dbc, "INSERT INTO prelaunch_users(fname, lname, email) VALUES($firstname, $lastname, $email)");
     
     mysqli_close($dbc);
     exit();
@@ -40,11 +23,19 @@ if(isset($_POST['submit'])){
     //send email
     include('mailthis.php');
     mail($to,$subject1,$msg1,$headers);
-            }
-      }
+
+}else{
+header("Location: https://www.jrupiter.com");
+}
+    
+}else{
+header("Location: https://www.jrupiter.com");
 }
 
+
 ?>
+
+
 
 <body>
 <header class="intro1">
