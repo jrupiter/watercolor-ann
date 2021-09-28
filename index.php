@@ -6,20 +6,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 require('../connect.php');
 $errors = array();
 
-if(empty($_POST['firstname'])){
+if(empty($_POST['fname'])){
 $errorrs[] = "Enter your first name.";
 }else{
-$fn = mysqli_real_escape_string($dbc, trim($_POST['firstname']));}
+$fn = mysqli_real_escape_string($dbc, trim($_POST['fname']));}
 
-if(empty($_POST['lastname'])){
+if(empty($_POST['lname'])){
 $errorrs[] = "Enter your last name.";
 }else{
-$ln = mysqli_real_escape_string($dbc, trim($_POST['lastname']));}
+$ln = mysqli_real_escape_string($dbc, trim($_POST['lname']));}
 	
-if(empty($_POST['email'])){
+if(empty($_POST['emailaddr'])){
 $errorrs[] = "Enter your email address.";
 }else{
-$e = mysqli_real_escape_string($dbc, trim($_POST['email']));}
+$e = mysqli_real_escape_string($dbc, trim($_POST['emailaddr']));}
 
 if(empty($errors)){
 $q = "SELECT userid FROM users WHERE email='$e'";
@@ -56,8 +56,8 @@ exit();
 <h1>jrupiter</h1>
 
 <form class="login" method="post" action="includes/intro1.php">
-<input type="text" placeholder="firstname" value="<?php if(isset($_POST['fname'])) echo $_POST['fname']; ?>"> name="fname"/> <br>
-<input type="text" placeholder="lastname" value="<?php if(isset($_POST['lname'])) echo $_POST['lname']; ?>" name="lname"/> <br>
+<input type="text" value="<?php if(isset($_POST['fname'])) echo $_POST['fname']; ?>" name="fname"/> <br>
+<input type="text" value="<?php if(isset($_POST['lname'])) echo $_POST['lname']; ?>" name="lname"/> <br>
 <input type="email" value="<?php if(isset($_POST['emailaddr'])) echo $_POST['emailaddr'];?>" name="emailaddr"/> <br>
 <input class="button" type="submit" value="submit" name="submit" /> 
 
