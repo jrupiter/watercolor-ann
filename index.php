@@ -3,7 +3,7 @@
 include('includes/headr.php');
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-require('../connect.php');
+require('connect.php');
 $errors = array();
 
 if(empty($_POST['fname'])){
@@ -22,23 +22,24 @@ $errorrs[] = "Enter your email address.";
 $e = mysqli_real_escape_string($dbc, trim($_POST['emailaddr']));}
 
 if(empty($errors)){
-$q = "SELECT userid FROM users WHERE email='$e'";
+$q = "SELECT user_id FROM users WHERE email='$e'";
 $r = mysqli_query($dbc,$q);
 if(mysqli_num_rows($r) != 0){
 $errors[] = 'Email address already registered. Thank You for Your Support';}
 }
 
 if(empty($errors)){
-$q = "INSERT INTO prelaunch_users (firstname, lastname, email ) VALUES ('$fn', '$ln', '$e', SHA1('$p'), NOW() )";
+$q = "INSERT INTO prelaunch_users (fname, lname, email ) VALUES ('$fn', '$ln', '$e', NOW())";
 $r = mysqli_query($dbc, $q); 
 
 if($r){
-echo'<h1>Registered</h1>
-<p>You are now registered.</p>';
+    header("Location: includes/intro1.php&reg=yes");
+//echo'<h1>Registered</h1>
+//<p>You are now registered.</p>';
 }
 
 mysqli_close($dbc);
-include('includes/footer.html');
+//include('includes/footer.html');
 exit();
 	}else{
 	echo '<h1>Error!</h1>
@@ -49,19 +50,23 @@ exit();
 	echo 'Please try again.</p>';
 	mysqli_close($dbc);
 }
+}
 
-}?>
+?>
 
 <body class="land">
 <h1>jrupiter</h1>
 
-<form class="login" method="post" action="includes/intro1.php">
-<input type="text" value="<?php if(isset($_POST['fname'])) echo $_POST['fname']; ?>" name="fname" placeholder="firstname"/> <br>
-<input type="text" value="<?php if(isset($_POST['lname'])) echo $_POST['lname']; ?>" name="lname" placeholder="lastname"/> <br>
-<input type="email" value="<?php if(isset($_POST['emailaddr'])) echo $_POST['emailaddr'];?>" name="emailaddr" placeholder="email"/> <br>
+<form class="login" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
+    <b>firstname</b><br>
+<input type="text" value="<?php if(isset($_POST['fname'])) echo $_POST['fname']; ?>" name="fname" /> <br>
+<b>lastname</b><br>
+<input type="text" value="<?php if(isset($_POST['lname'])) echo $_POST['lname']; ?>" name="lname"/> <br>
+<b>email</b><br>
+<input type="email" value="<?php if(isset($_POST['emailaddr'])) echo $_POST['emailaddr'];?>" name="emailaddr"/> <br>
 <input class="button" type="submit" value="submit" name="submit" /> 
 
-<?php include("footer.php"); ?>
+<?php //include("footer.php"); ?>
 <form>
 </body>
 </html>
