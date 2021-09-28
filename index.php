@@ -56,9 +56,9 @@ exit();
 <h1>jrupiter</h1>
 
 <form class="login" method="post" action="includes/intro1.php">
-<input type="text" value="<?php if(isset($_POST['fname'])) echo $_POST['fname']; ?>" name="fname"/> <br>
-<input type="text" value="<?php if(isset($_POST['lname'])) echo $_POST['lname']; ?>" name="lname"/> <br>
-<input type="email" value="<?php if(isset($_POST['emailaddr'])) echo $_POST['emailaddr'];?>" name="emailaddr"/> <br>
+<input type="text" value="<?php if(isset($_POST['fname'])) echo $_POST['fname']; ?>" name="fname" placeholder="firstname"/> <br>
+<input type="text" value="<?php if(isset($_POST['lname'])) echo $_POST['lname']; ?>" name="lname" placeholder="lastname"/> <br>
+<input type="email" value="<?php if(isset($_POST['emailaddr'])) echo $_POST['emailaddr'];?>" name="emailaddr" placeholder="email"/> <br>
 <input class="button" type="submit" value="submit" name="submit" /> 
 
 <?php include("footer.php"); ?>
